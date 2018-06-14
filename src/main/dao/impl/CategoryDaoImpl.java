@@ -23,7 +23,7 @@ public class CategoryDaoImpl implements CategoryDao {
         try {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select * from category where id=?";
-            return (Category)runner.query(sql, new BeanHandler<>(Category.class), id);
+            return runner.query(sql, new BeanHandler<>(Category.class), id);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);

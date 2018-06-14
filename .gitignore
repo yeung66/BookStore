@@ -1,4 +1,4 @@
-
+#忽略以下文件夹
 target/
 .idea/
 out/

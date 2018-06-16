@@ -4,7 +4,7 @@ import main.domain.Book;
 import main.domain.Category;
 import main.domain.Page;
 import main.service.impl.BussinessServiceImpl;
-import main.utils.UUIDUtils;
+import main.utils.WebUtils;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -54,7 +54,7 @@ public class BookServlet extends HttpServlet {
     }
     //转到添加book的界面
     private void addUI(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        BusinessServiceImpl service = new BusinessServiceImpl();
+        BussinessServiceImpl service = new BussinessServiceImpl();
         List<Category> category = service.getAllCategory();
         request.setAttribute("categories", category);
         request.getRequestDispatcher("/manager/addBook.jsp").forward(request, response);
@@ -63,7 +63,7 @@ public class BookServlet extends HttpServlet {
         try {
             Book book = upLoadData(request);
             BussinessServiceImpl service = new BussinessServiceImpl();
-            book.setBookid(Long.valueOf(UUIDUtils.makeID()));
+            book.setBookid(Long.valueOf(WebUtils.makeID()));
             service.addBook(book);
             request.setAttribute("message", "添加成功");
         } catch (Exception e) {
@@ -72,7 +72,7 @@ public class BookServlet extends HttpServlet {
         }
         request.getRequestDispatcher("/message.jsp").forward(request, response);
     }
-    //上传图片数据
+    //上传书本数据
     private Book upLoadData(HttpServletRequest request) {
         Book book = new Book();
         try {
@@ -80,11 +80,12 @@ public class BookServlet extends HttpServlet {
             ServletFileUpload upload = new ServletFileUpload(factory);
             List<FileItem> list = upload.parseRequest(request);
             for (FileItem item : list) {
+                //普通数据，要求FieldName和book的属性名一致
                 if (item.isFormField()) {
                     String name = item.getFieldName();
                     String value = item.getString("UTF-8");
                     BeanUtils.setProperty(book, name, value);
-                } else {
+                } else {//图片
                     String filename = item.getName();
                     String savefilename = makeFileName(filename);
                     String savepath = this.getServletContext().getRealPath("/images");

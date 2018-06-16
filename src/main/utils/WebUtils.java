@@ -7,7 +7,7 @@ import java.util.UUID;
  * @Description : 生成UUID
  * @date :2018-06-12
  **/
-public class UUIDUtils {
+public class WebUtils {
     public static String makeID(){
         return UUID.randomUUID().toString();
     }

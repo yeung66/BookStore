@@ -17,7 +17,7 @@ public class BookDaoImpl implements BookDao {
         try {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "insert into book(bookID,bookName,price,type,bookPicture) values(?,?,?,?,?,?)";
-            Object params[] = {book.getBookid(),book.getBookname(),book.getPrice(),book.getType(),book.getBookpicture()};
+            Object params[] = {book.getBookid(),book.getBookname(),book.getPrice(),book.getCategoryID(),book.getBookpicture()};
             runner.update(sql, params);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,11 +64,11 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> getCategoryPageData(int startindex, int pagesize, String type) {
+    public List<Book> getCategoryPageData(int startindex, int pagesize, String categoryID) {
         try {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select * from book where type=? limit ?,?";
-            Object params[] = {type, startindex, pagesize};
+            Object params[] = {categoryID, startindex, pagesize};
             return runner.query(sql, new BeanListHandler<>(Book.class) ,params);
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,11 +77,11 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public int getCategoryTotalRecord(String type) {
+    public int getCategoryTotalRecord(String categoryID) {
         try {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select count(*) from book where type=?";
-            long totalRecord = (Long)runner.query(sql, new ScalarHandler(),type);
+            long totalRecord = (Long)runner.query(sql, new ScalarHandler(),categoryID);
             return (int)totalRecord;
         } catch (Exception e) {
             e.printStackTrace();

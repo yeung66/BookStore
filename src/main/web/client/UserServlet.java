@@ -2,7 +2,7 @@ package main.web.client;
 
 import main.domain.User;
 import main.service.impl.BussinessServiceImpl;
-import main.utils.UUIDUtils;
+import main.utils.WebUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,8 +33,8 @@ public class UserServlet extends HttpServlet{
         } else if (method.equals("register")) {
             try {
                 //得到JSP传递过来的数据，封装成Bean对象
-                User user = UUIDUtils.request2Bean(request, User.class);
-                user.setUserid(UUIDUtils.makeId());
+                User user = WebUtils.request2Bean(request, User.class);
+                user.setUserid(WebUtils.makeId());
                 service.registerUser(user);
                 request.setAttribute("message", "注册成功了！");
             } catch (Exception e) {

@@ -4,7 +4,7 @@ public class Book {
     private Long bookid;
     private String bookname;
     private Double price;
-    private String type;
+    private String categoryID;
     private String bookpicture;
 
     public Long getBookid() {
@@ -31,12 +31,12 @@ public class Book {
         this.price = price;
     }
 
-    public String getType() {
-        return type;
+    public String getCategoryID() {
+        return categoryID;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCategoryID(String categoryID) {
+        this.categoryID = categoryID;
     }
 
     public String getBookpicture() {

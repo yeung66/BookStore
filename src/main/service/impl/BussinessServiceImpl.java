@@ -5,6 +5,7 @@ import main.dao.CategoryDao;
 import main.dao.OrderDao;
 import main.dao.UserDao;
 import main.domain.Book;
+import main.domain.Cart;
 import main.domain.Category;
 import main.domain.Page;
 import main.service.BussinessService;
@@ -59,6 +60,10 @@ public class BussinessServiceImpl implements BussinessService {
         List<Book> list = bookDao.getCategoryPageData(page.getStartindex(), page.getPagesize(), categoryID);
         page.setList(list);
         return page;
+    }
+    //购买书籍
+    public void buyBook(Cart cart, Book book) {
+        cart.addBook2Cart(book);
     }
 
 }

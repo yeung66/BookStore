@@ -1,4 +1,4 @@
-package main.service;
+package main.service.impl;
 
 import main.dao.UserDao;
 import main.domain.User;

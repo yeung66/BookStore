@@ -1,7 +1,7 @@
 package main.web.client;
 
 import main.domain.User;
-import main.service.impl.BussinessServiceImpl;
+import main.service.impl.UserService;
 import main.utils.WebUtils;
 
 import javax.servlet.ServletException;
@@ -18,7 +18,7 @@ public class UserServlet extends HttpServlet{
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String method = request.getParameter("method");
-        BussinessServiceImpl service = new BussinessServiceImpl();
+        UserService service = new UserService();
         if (method.equals("login")) {
             try { //得到页面传递过来的数据
                 String username = request.getParameter("username");
@@ -34,7 +34,7 @@ public class UserServlet extends HttpServlet{
             try {
                 //得到JSP传递过来的数据，封装成Bean对象
                 User user = WebUtils.request2Bean(request, User.class);
-                user.setUserid(WebUtils.makeId());
+                user.setUserid(Long.valueOf(WebUtils.makeID()));
                 service.registerUser(user);
                 request.setAttribute("message", "注册成功了！");
             } catch (Exception e) {

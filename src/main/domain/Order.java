@@ -1,76 +1,62 @@
 package main.domain;
 
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 public class Order {
-    private Long orderid;
-    private Long userid;
-    private Long bookid;
-    private String bookname;
+    private String id;
+    private Date ordertime;
     private Double price;
-    private Long quantity;
-    private String status;
-    private java.sql.Date ordertime;
+    private Boolean state;
+    private User user;
+    private Set<OrderItem> orderitems = new HashSet<OrderItem>();
 
-    public Long getOrderid() {
-        return orderid;
+    public Set<OrderItem> getOrderitems() {
+        return orderitems;
     }
 
-    public void setOrderid(Long orderid) {
-        this.orderid = orderid;
+    public void setOrderitems(Set<OrderItem> orderitems) {
+        this.orderitems = orderitems;
     }
 
-    public Long getUserid() {
-        return userid;
+    public String getId() {
+        return id;
     }
 
-    public void setUserid(Long userid) {
-        this.userid = userid;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public Long getBookid() {
-        return bookid;
-    }
-
-    public void setBookid(Long bookid) {
-        this.bookid = bookid;
-    }
-
-    public String getBookname() {
-        return bookname;
-    }
-
-    public void setBookname(String bookname) {
-        this.bookname = bookname;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Long getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public java.sql.Date getOrdertime() {
+    public Date getOrdertime() {
         return ordertime;
     }
 
-    public void setOrdertime(java.sql.Date ordertime) {
+    public void setOrdertime(Date ordertime) {
         this.ordertime = ordertime;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

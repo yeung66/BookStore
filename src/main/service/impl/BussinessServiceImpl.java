@@ -4,14 +4,14 @@ import main.dao.BookDao;
 import main.dao.CategoryDao;
 import main.dao.OrderDao;
 import main.dao.UserDao;
-import main.domain.Book;
-import main.domain.Cart;
-import main.domain.Category;
-import main.domain.Page;
+import main.domain.*;
 import main.service.BussinessService;
 import main.utils.DaoFactory;
+import main.utils.WebUtils;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class BussinessServiceImpl implements BussinessService {
     private CategoryDao categoryDao = DaoFactory.getInstance().createDao("main.dao.impl.CategoryDaoImpl", CategoryDao.class);
@@ -64,6 +64,52 @@ public class BussinessServiceImpl implements BussinessService {
     //购买书籍
     public void buyBook(Cart cart, Book book) {
         cart.addBook2Cart(book);
+    }
+    //下订单
+    public void createOrder(Cart cart, User user){
+        if(cart == null){
+            throw new RuntimeException("购物车里为空");
+        }
+        Order order = new Order();
+        order.setId(WebUtils.makeID());
+        order.setOrdertime(new Date());
+        order.setPrice(cart.getPrice());
+        order.setState(false);
+        order.setUser(user);
+        for(Map.Entry<String, CartItem> me : cart.getMap().entrySet()){
+            //
+            CartItem citem = me.getValue();
+            OrderItem oitem = new OrderItem();
+            oitem.setBook(citem.getBook());
+            oitem.setPrice(citem.getPrice());
+            oitem.setId(WebUtils.makeID());
+            oitem.setQuantity(citem.getQuantity());
+            order.getOrderitems().add(oitem);
+        }
+        orderDao.add(order);
+    }
+    //列出已发货或未发货的所有订单
+    public List<Order> listOrder(String state) {
+        return orderDao.getAll(Boolean.parseBoolean(state));
+    }
+    //查找订单
+    public Order findOrder(String orderid) {
+        return orderDao.find(orderid);
+    }
+
+    //更改订单状态
+    public void confirmOrder(String orderid) {
+        Order order = orderDao.find(orderid);
+        order.setState(true);
+        orderDao.update(order);
+    }
+    //列出某个用户已发货或未发货的所有订单（管理端用）
+    public List<Order> listOrder(String state, String userid) {
+        return orderDao.getAll(Boolean.parseBoolean(state), userid);
+    }
+    //列出某用户的所有订单（客户端用）
+    public List<Order> clientListOrder(String userid) {
+        return orderDao.getAllOrder(userid);
     }
 
 }

@@ -29,11 +29,12 @@ public class BookDetailServlet extends HttpServlet {
         String categoryID = book.getCategoryID();
         String categoryName = bussinessService.findCategory(categoryID).getName();
         //添加至属性
+        request.setAttribute("bookID",bookID);
         request.setAttribute("bookName",bookName);
         request.setAttribute("price",price);
         request.setAttribute("bookPicture",bookPicture);
         request.setAttribute("categoryName",categoryName);
 
-        request.getRequestDispatcher("details.html").forward(request,response);
+        request.getRequestDispatcher("bookDetail.jsp").forward(request,response);
     }
 }

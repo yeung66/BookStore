@@ -91,7 +91,13 @@
         var chk = document.querySelector('input[type=checkbox]')
         chk.addEventListener('click',(e)=>{
             var target = e.target
+            var form = document.querySelector('form')
+            if(target.checked){
+                form.action='admin.do'
 
+            }else {
+                form.action='user.do?method=login'
+            }
         })
     </script>
 

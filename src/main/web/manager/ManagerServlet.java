@@ -18,10 +18,11 @@ public class ManagerServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String ManagerName = request.getParameter("ManagerName");
+        String ManagerName = request.getParameter("username");
         String password = request.getParameter("password");
         if(ManagerName.equals("system")&&password.equals("123456")){
-            request.getRequestDispatcher("Manager.jsp").forward(request,response);
+            request.getSession().setAttribute("admin",true);
+            response.sendRedirect("manageBook.do?method=list");
         }else {
             request.setAttribute("errorMessage","用户名和密码错误，请重新输入：");
             request.getRequestDispatcher("Login failed.html").forward(request,response);

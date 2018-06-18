@@ -32,6 +32,15 @@
   </servlet-mapping>
   
   <servlet>
+    <servlet-name>bookDetail</servlet-name>
+    <servlet-class>main.web.client.BookDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>bookDetail</servlet-name>
+    <url-pattern>/book.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>Cart</servlet-name>
     <servlet-class>main.web.client.ShowCartServlet</servlet-class>
   </servlet>
@@ -83,5 +92,23 @@
   <servlet-mapping>
     <servlet-name>deleteItemFromCart</servlet-name>
     <url-pattern>/deleteItem.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>admin</servlet-name>
+    <servlet-class>main.web.manager.ManagerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>admin</servlet-name>
+    <url-pattern>/admin.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>manageBook</servlet-name>
+    <servlet-class>main.web.manager.BookServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>manageBook</servlet-name>
+    <url-pattern>/manageBook.do</url-pattern>
   </servlet-mapping>
 </web-app>

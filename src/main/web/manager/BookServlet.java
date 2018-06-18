@@ -34,6 +34,9 @@ public class BookServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(request.getSession().getAttribute("admin")==null) {
+            response.getWriter().println("<script>alert('opearte only admin signing in!')</script>");
+        }
         String method = request.getParameter("method");
         if (method.equalsIgnoreCase("addUI")) {
             addUI(request, response);
@@ -45,16 +48,19 @@ public class BookServlet extends HttpServlet {
             list(request, response);
         }
         if(method.equalsIgnoreCase("delete")){
-
+            deleteBook(request,response);
         }
     }
     //获取书籍列表
     private void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pagenum = request.getParameter("pagenum");
+        pagenum="1";
         BussinessServiceImpl service = new BussinessServiceImpl();
+        List<Category> category = service.getAllCategory();
+        request.setAttribute("categories", category);
         Page page = service.getBookPageData(pagenum);
         request.setAttribute("page", page);
-        request.getRequestDispatcher("/manager/listbook.jsp").forward(request, response);
+        request.getRequestDispatcher("manageBook.jsp").forward(request, response);
     }
     //转到添加book的界面
     private void addUI(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -88,7 +94,7 @@ public class BookServlet extends HttpServlet {
             e.printStackTrace();
             request.setAttribute("message", "删除失败");
         }
-        request.getRequestDispatcher("/message.jsp").forward(request, response);
+        response.sendRedirect("manageBook.do?method=list");
     }
         //上传书本数据
     private Book upLoadData(HttpServletRequest request) {

@@ -9,7 +9,7 @@ import java.util.List;
  **/
 public class Page {
     private int totalpage;  //总页数
-    private int pagesize = 3; //页面大小，默认为3
+    private int pagesize = 30; //页面大小，默认为3
     private int totalRecord; //总记录数
     private int pagenum; //当前页码
     private List list; //存放书本数据

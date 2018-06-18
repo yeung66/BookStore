@@ -64,14 +64,15 @@
             %>
                 <%="<div class=\"book\" id='" +((Book) b).getBookid()+
                         "'>\n" +
-                        "                <a><img></a>\n" +
+                        "                <a href='book.do?bookID=" +((Book) b).getBookid()+
+                        "'><img src=\"static/img/book_1.jpg\"></a>\n" +
                         "                <div class=\"title\">" +((Book) b).getBookname()+
                         "</div>\n" +
                         "                <div class=\"price\">" +((Book) b).getPrice()+
                         "</div>\n" +
                         "                <div class=\"button\">\n" +
                         "                    <button class='addCart'>加入购物车</button>\n" +
-                        "                    <button class='buyCart'>直接购买</button>\n" +
+//                        "                    <button class='buyCart'>直接购买</button>\n" +
                         "                </div>\n" +
                         "            </div>"%>
             <%}%>

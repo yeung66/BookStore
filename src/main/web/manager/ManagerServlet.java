@@ -24,7 +24,7 @@ public class ManagerServlet extends HttpServlet {
             request.getRequestDispatcher("Manager.jsp").forward(request,response);
         }else {
             request.setAttribute("errorMessage","用户名和密码错误，请重新输入：");
-            request.getRequestDispatcher("ManagerLogin.jsp").forward(request,response);
+            request.getRequestDispatcher("Login failed.html").forward(request,response);
         }
     }
 }

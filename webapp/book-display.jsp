@@ -21,8 +21,8 @@
         <ul>
             <li>用户：${sessionScope.user.username} </li>
             <li><a href="user.do?method=Logout" id='logout'>注销</a></li>
-            <li><a href="#">购物车</a></li>
-            <li><a href="#">我的订单</a></li>
+            <li><a href="Cart.do">购物车</a></li>
+            <li><a href="orders.do">我的订单</a></li>
         </ul>
     </div>
 </nav>
@@ -70,13 +70,29 @@
                         "                <div class=\"price\">" +((Book) b).getPrice()+
                         "</div>\n" +
                         "                <div class=\"button\">\n" +
-                        "                    <button>加入购物车</button>\n" +
-                        "                    <button>直接购买</button>\n" +
+                        "                    <button class='addCart'>加入购物车</button>\n" +
+                        "                    <button class='buyCart'>直接购买</button>\n" +
                         "                </div>\n" +
                         "            </div>"%>
             <%}%>
         </div>
 </section>
+<script>
+    var buttonsAdd=document.querySelectorAll('.addCart')
+    buttonsAdd.forEach((b)=>{
+        b.onclick=(e)=>{
+            var http = new XMLHttpRequest()
+            http.open('POST','add2Cart.do',true)
+            http.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+            http.onreadystatechange=function () {
+                if(http.status==200 && http.readyState==4){
+                    alert("添加至购物车成功！")
+                }
+            }
+            http.send('book_id='+e.target.parentNode.parentNode.id)
 
+    }
+    })
+</script>
 </body>
 </html>

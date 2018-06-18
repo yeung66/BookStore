@@ -114,14 +114,17 @@ nav .logo a{
 .main .orders .order {
 	display: flex;
 	align-items: center;
-    width: 633px;
-    height: 200px;
+    justify-content: space-around;
+    width: 100%;
+    padding: 2%;
 }
 
+.orders .order >*{
+    flex: 1;
+}
 
-.main .order a img{
-    width: 180px;
-    height: 180px;
+.main .order .time{
+    flex:2;
 }
 .main .order .title{
 	padding: 0 100px 0 30px;

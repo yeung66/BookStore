@@ -27,9 +27,9 @@ public class ClientListOrderServlet extends HttpServlet {
             request.getRequestDispatcher("/message.jsp").forward(request, response);
             return;
         }
-        String userid = request.getParameter("userid");
+        String userid = ((User) request.getSession().getAttribute("user")).getUserid();
         List<Order> orders = service.clientListOrder(userid);
         request.setAttribute("orders", orders);
-        request.getRequestDispatcher("/client/clientlistorder.jsp").forward(request, response);
+        request.getRequestDispatcher("orders.jsp").forward(request, response);
     }
 }

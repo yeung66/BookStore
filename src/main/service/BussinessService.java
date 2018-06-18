@@ -19,6 +19,8 @@ public interface BussinessService {
     Page getBookPageData(String pagenum, String categoryID);
     //购买书籍
     void buyBook(Cart cart, Book book);
+    //删除书籍
+    void deleteBook(Cart cart, Book book);
     //下订单
     void createOrder(Cart cart, User user);
     //列出已发货或未发货的所有订单

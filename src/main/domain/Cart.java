@@ -33,6 +33,14 @@ public class Cart {
         }
         return totalPrice;
     }
+
+    //提供把商品从购物车删除
+    public void deleteBookFromCart(Book book) {
+        //得到对应的购物项
+        CartItem cartItem = map.get(book.getBookid().toString());
+        //从购物车中删除
+        map.remove(book.getBookid().toString(),cartItem);
+    }
     public Map<String, CartItem> getMap() {
         return map;
     }

@@ -43,7 +43,7 @@
     <div class="shopping_list">
         <table width=100% border="0" cellspacing="0" cellpadding="0">
             <tbody>
-            <% if(request.getAttribute("cart")!=null) {%>
+            <% if(request.getAttribute("cart")!=null && ((Cart)request.getAttribute("cart")).getMap().size()!=0){%>
             <% Map map = ((Cart)request.getAttribute("cart")).getMap();
                 Iterator iter = map.keySet().iterator();
                 while (iter.hasNext()) {
@@ -82,12 +82,12 @@
                 </td>
                 <td class="row5">
 							<span>
-								<button name="<%=((CartItem)map.get(key)).getBook().getBookid()%>">删除</button>
+								<button><a href="deleteItem.do?book_id=<%=((CartItem)map.get(key)).getBook().getBookid()%>">删除</a></button>
 							</span>
                 </td>
             </tr>
             <%}}%>
-            <% if(request.getAttribute("cart")==null)
+            <% if(request.getAttribute("cart")==null || ((Cart)request.getAttribute("cart")).getMap().size()==0)
                 out.println("<div style='text-align: center;margin-top: 30px;'>购物车还没有物品，快去选购吧！</div>"); %>
             </tbody>
         </table>

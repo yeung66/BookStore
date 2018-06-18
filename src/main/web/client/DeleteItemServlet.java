@@ -33,6 +33,7 @@ public class DeleteItemServlet extends HttpServlet{
         Book book = service.findBook(book_id);
         //删除书籍
         service.deleteBook(cart, book);
+        response.sendRedirect("Cart.do");
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -75,4 +75,13 @@
     <servlet-name>orderDetail</servlet-name>
     <url-pattern>/orderDetail.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>deleteItemFromCart</servlet-name>
+    <servlet-class>main.web.client.DeleteItemServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deleteItemFromCart</servlet-name>
+    <url-pattern>/deleteItem.do</url-pattern>
+  </servlet-mapping>
 </web-app>

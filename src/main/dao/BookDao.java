@@ -24,5 +24,5 @@ public interface BookDao {
 
         public int getCategoryTotalRecord(String category_id);
 
-
+        public void delete(String bookID);
 }

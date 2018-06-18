@@ -20,7 +20,7 @@ public interface BussinessService {
     //购买书籍
     void buyBook(Cart cart, Book book);
     //删除书籍
-    void deleteBook(Cart cart, Book book);
+    void deleteCartBook(Cart cart, Book book);
     //下订单
     void createOrder(Cart cart, User user);
     //列出已发货或未发货的所有订单
@@ -33,4 +33,6 @@ public interface BussinessService {
     List<Order> listOrder(String state, String userid);
 
     public List<Order> clientListOrder(String userid);
+    //删除书（管理端）
+    public void deleteBook(String bookID);
 }

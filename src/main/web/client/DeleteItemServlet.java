@@ -32,7 +32,7 @@ public class DeleteItemServlet extends HttpServlet{
         String book_id = request.getParameter("book_id");
         Book book = service.findBook(book_id);
         //删除书籍
-        service.deleteBook(cart, book);
+        service.deleteCartBook(cart, book);
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

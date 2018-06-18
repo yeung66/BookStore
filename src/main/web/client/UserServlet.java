@@ -35,8 +35,13 @@ public class UserServlet extends HttpServlet{
         } else if (method.equals("register")) {
             try {
                 //得到JSP传递过来的数据，封装成Bean对象
-                User user = WebUtils.request2Bean(request, User.class);
-                user.setUserid(Long.valueOf(WebUtils.makeID()));
+//                User user = WebUtils.request2Bean(request, User.class);
+                User user = new User();
+                String userName = request.getParameter("username");
+                String pw = request.getParameter("password");
+                user.setPw(pw);
+                user.setUsername(userName);
+                user.setUserid(WebUtils.makeID());
                 service.registerUser(user);
                 request.setAttribute("message", "注册成功了！");
             } catch (Exception e) {

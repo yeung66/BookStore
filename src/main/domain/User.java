@@ -1,15 +1,15 @@
 package main.domain;
 
 public class User {
-    private Long userid;
+    private String userid;
     private String username;
     private String pw;
 
-    public Long getUserid() {
+    public String getUserid() {
         return userid;
     }
 
-    public void setUserid(Long userid) {
+    public void setUserid(String userid) {
         this.userid = userid;
     }
 

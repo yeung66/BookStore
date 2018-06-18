@@ -63,7 +63,7 @@ public class BookServlet extends HttpServlet {
         try {
             Book book = upLoadData(request);
             BussinessServiceImpl service = new BussinessServiceImpl();
-            book.setBookid(Long.valueOf(WebUtils.makeID()));
+            book.setBookid(WebUtils.makeID());
             service.addBook(book);
             request.setAttribute("message", "添加成功");
         } catch (Exception e) {

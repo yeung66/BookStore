@@ -31,7 +31,7 @@ public class OrderServlet extends HttpServlet {
             service.createOrder(cart,user);
             request.setAttribute("message", "您的订单已经生成！");
             request.getSession().removeAttribute("cart");
-            request.getRequestDispatcher("/message.jsp").forward(request, response);
+            //request.getRequestDispatcher("/message.jsp").forward(request, response);
 
 
         }catch(Exception e) {

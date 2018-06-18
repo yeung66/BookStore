@@ -43,14 +43,15 @@ public class UserServlet extends HttpServlet{
                 user.setUsername(userName);
                 user.setUserid(WebUtils.makeID());
                 service.registerUser(user);
-                request.setAttribute("message", "注册成功了！");
+                request.setAttribute("message", "注册成功了！");response.getWriter().println("<script>alert('Register Success!')</script>");
             } catch (Exception e) {
                 e.printStackTrace();
-                request.setAttribute("message", "注册失败了！");
+                request.setAttribute("message", "注册失败了！");response.getWriter().println("<script>alert('Fail to register!')</script>");
             }
-            response.getWriter().println("<script>Fail to register!</script>");
+
         } else if (method.equals("Logout")) {
             //销毁session
+            request.getSession().removeAttribute("cart");
             request.getSession().invalidate();
             //回到首页
             request.getRequestDispatcher("Sign in.html").forward(request, response);

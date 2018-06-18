@@ -20,13 +20,13 @@ public class ShowCartServlet extends HttpServlet {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
             request.setAttribute("message", "您还没有登陆呢！");
-            request.getRequestDispatcher("/message.jsp").forward(request, response);
+            request.getRequestDispatcher("Sign in.html").forward(request, response);
             return;
         } //如果登陆了.....
         Cart cart = (Cart) request.getSession().getAttribute("cart");
         //把该用户的购物车给JSP页面显示
         request.setAttribute("cart", cart);
-        request.getRequestDispatcher("/client/listCart.jsp").forward(request, response);
+        request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)

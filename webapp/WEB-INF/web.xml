@@ -30,4 +30,49 @@
     <servlet-name>Index</servlet-name>
     <url-pattern>/index.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Cart</servlet-name>
+    <servlet-class>main.web.client.ShowCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Cart</servlet-name>
+    <url-pattern>/Cart.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>add2Cart</servlet-name>
+    <servlet-class>main.web.client.BuyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>add2Cart</servlet-name>
+    <url-pattern>/add2Cart.do</url-pattern>
+  </servlet-mapping>
+
+<servlet>
+  <servlet-name>MakeOrder</servlet-name>
+  <servlet-class>main.web.client.OrderServlet</servlet-class>
+</servlet>
+  <servlet-mapping>
+    <servlet-name>MakeOrder</servlet-name>
+    <url-pattern>/makeOrder.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Orders</servlet-name>
+    <servlet-class>main.web.client.ClientListOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Orders</servlet-name>
+    <url-pattern>/orders.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>orderDetail</servlet-name>
+    <servlet-class>main.web.client.ClientOrderDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>orderDetail</servlet-name>
+    <url-pattern>/orderDetail.do</url-pattern>
+  </servlet-mapping>
 </web-app>

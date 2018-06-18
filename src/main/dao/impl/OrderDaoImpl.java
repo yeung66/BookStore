@@ -18,7 +18,7 @@ public class OrderDaoImpl implements OrderDao{
     public void add(Order order) {
         try {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "insert into order(orderID,orderTime,price,state,userID) values(?,?,?,?,?)";
+            String sql = "insert into orders(orderID,orderTime,price,state,userID) values(?,?,?,?,?)";
             Object params[] = {order.getId(), order.getOrdertime(), order.getPrice(), order.isState(), order.getUser().getUserid()};
             runner.update(sql, params);
             Set<OrderItem> set = order.getOrderitems();
@@ -36,7 +36,7 @@ public class OrderDaoImpl implements OrderDao{
     public Order find(String id){
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select * from order where id=?";
+            String sql = "select * from orders where id=?";
             Order order = runner.query(sql, new BeanHandler<>(Order.class),id);
             sql = "select * from orderitem where orderID=?";
             List<OrderItem> list = runner.query(sql,  new BeanListHandler<>(OrderItem.class),id);
@@ -47,7 +47,7 @@ public class OrderDaoImpl implements OrderDao{
                 item.setBook(book);
             }
             order.getOrderitems().addAll(list);
-            sql = "select * from order,users where order.orderID=? and order.userID=users.userID";
+            sql = "select * from orders,users where orders.orderID=? and order.userID=users.userID";
             User user = runner.query(sql, new BeanHandler<>(User.class), order.getId());
             order.setUser(user);
             return order;
@@ -111,7 +111,7 @@ public class OrderDaoImpl implements OrderDao{
     public List<Order> getAllOrder(String userid){
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select * from order where userID=?";
+            String sql = "select * from orders where userID=?";
             List<Order> list = runner.query(sql, new BeanListHandler<>(Order.class), userid);
             for(Order order : list){
                 sql = "select * from users where userID=?";

@@ -36,8 +36,8 @@ public class BuyServlet extends HttpServlet {
         Book book = service.findBook(book_id);
         //把书籍添加到购物车中
         service.buyBook(cart, book);
-        request.setAttribute("message", "该商品已添加到购物车中");
-        request.getRequestDispatcher("/message.jsp").forward(request,response);
+//        request.setAttribute("message", "该商品已添加到购物车中");
+//        request.getRequestDispatcher("/message.jsp").forward(request,response);
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

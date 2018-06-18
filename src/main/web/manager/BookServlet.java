@@ -3,6 +3,7 @@ package main.web.manager;
 import main.domain.Book;
 import main.domain.Category;
 import main.domain.Page;
+import main.service.BussinessService;
 import main.service.impl.BussinessServiceImpl;
 import main.utils.WebUtils;
 import org.apache.commons.beanutils.BeanUtils;
@@ -43,6 +44,9 @@ public class BookServlet extends HttpServlet {
         if (method.equalsIgnoreCase("list")) {
             list(request, response);
         }
+        if(method.equalsIgnoreCase("delete")){
+
+        }
     }
     //获取书籍列表
     private void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -59,11 +63,12 @@ public class BookServlet extends HttpServlet {
         request.setAttribute("categories", category);
         request.getRequestDispatcher("/manager/addBook.jsp").forward(request, response);
     }
+    //添加书籍
     private void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Book book = upLoadData(request);
             BussinessServiceImpl service = new BussinessServiceImpl();
-            book.setBookid(Long.valueOf(WebUtils.makeID()));
+            book.setBookid(WebUtils.makeID());
             service.addBook(book);
             request.setAttribute("message", "添加成功");
         } catch (Exception e) {
@@ -72,7 +77,20 @@ public class BookServlet extends HttpServlet {
         }
         request.getRequestDispatcher("/message.jsp").forward(request, response);
     }
-    //上传书本数据
+    //删除书籍
+    private void deleteBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            String bookID = request.getParameter("bookID");
+            BussinessService bussinessService = new BussinessServiceImpl();
+            bussinessService.deleteBook(bookID);
+            request.setAttribute("message", "删除成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("message", "删除失败");
+        }
+        request.getRequestDispatcher("/message.jsp").forward(request, response);
+    }
+        //上传书本数据
     private Book upLoadData(HttpServletRequest request) {
         Book book = new Book();
         try {

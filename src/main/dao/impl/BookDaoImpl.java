@@ -16,7 +16,7 @@ public class BookDaoImpl implements BookDao {
     public void add(Book book) {
         try {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "insert into book(bookID,bookName,price,type,bookPicture) values(?,?,?,?,?,?)";
+            String sql = "insert into book(bookID,bookName,price,categoryID,bookPicture) values(?,?,?,?,?)";
             Object params[] = {book.getBookid(),book.getBookname(),book.getPrice(),book.getCategoryID(),book.getBookpicture()};
             runner.update(sql, params);
         } catch (SQLException e) {
@@ -88,4 +88,17 @@ public class BookDaoImpl implements BookDao {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void delete(String bookID){
+        try {
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "Delete from book where bookID = ?";
+            runner.update(sql,bookID);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
 }

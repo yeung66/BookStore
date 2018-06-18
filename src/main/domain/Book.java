@@ -1,17 +1,17 @@
 package main.domain;
 
 public class Book {
-    private Long bookid;
+    private String bookid;
     private String bookname;
     private Double price;
     private String categoryID;
     private String bookpicture;
 
-    public Long getBookid() {
+    public String getBookid() {
         return bookid;
     }
 
-    public void setBookid(Long bookid) {
+    public void setBookid(String bookid) {
         this.bookid = bookid;
     }
 

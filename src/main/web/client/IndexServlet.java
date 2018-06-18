@@ -54,7 +54,7 @@ public class IndexServlet extends HttpServlet {
         String pagenum = request.getParameter("pagenum");//获取当前页
         Page page = service.getBookPageData(pagenum, categoryID);
         request.setAttribute("page", page);
-        request.getRequestDispatcher("/client/body.jsp").forward(request, response);
+        request.getRequestDispatcher("book-display.jsp").forward(request, response);
     }
 
 }

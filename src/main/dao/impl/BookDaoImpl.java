@@ -67,7 +67,7 @@ public class BookDaoImpl implements BookDao {
     public List<Book> getCategoryPageData(int startindex, int pagesize, String categoryID) {
         try {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select * from book where type=? limit ?,?";
+            String sql = "select * from book where categoryID=? limit ?,?";
             Object params[] = {categoryID, startindex, pagesize};
             return runner.query(sql, new BeanListHandler<>(Book.class) ,params);
         } catch (Exception e) {
@@ -80,7 +80,7 @@ public class BookDaoImpl implements BookDao {
     public int getCategoryTotalRecord(String categoryID) {
         try {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select count(*) from book where type=?";
+            String sql = "select count(*) from book where categoryID=?";
             long totalRecord = (Long)runner.query(sql, new ScalarHandler(),categoryID);
             return (int)totalRecord;
         } catch (Exception e) {

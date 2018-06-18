@@ -14,10 +14,10 @@ import main.utils.DaoFactory;
 import java.util.List;
 
 public class BussinessServiceImpl implements BussinessService {
-    private CategoryDao categoryDao = DaoFactory.getInstance().createDao("dao.impl.CategoryDaoImpl", CategoryDao.class);
-    private BookDao bookDao = DaoFactory.getInstance().createDao("dao.impl.BookDaoImpl", BookDao.class);
-    private UserDao userDao = DaoFactory.getInstance().createDao("dao.impl.UserDaoImpl", UserDao.class);
-    private OrderDao orderDao = DaoFactory.getInstance().createDao("dao.impl.OrderDaoImpl", OrderDao.class);
+    private CategoryDao categoryDao = DaoFactory.getInstance().createDao("main.dao.impl.CategoryDaoImpl", CategoryDao.class);
+    private BookDao bookDao = DaoFactory.getInstance().createDao("main.dao.impl.BookDaoImpl", BookDao.class);
+    private UserDao userDao = DaoFactory.getInstance().createDao("main.dao.impl.UserDaoImpl", UserDao.class);
+    private OrderDao orderDao = DaoFactory.getInstance().createDao("main.dao.impl.OrderDaoImpl", OrderDao.class);
 
     //获取所有分类
     public List<Category> getAllCategory(){

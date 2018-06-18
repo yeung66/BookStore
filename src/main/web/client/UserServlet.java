@@ -24,11 +24,13 @@ public class UserServlet extends HttpServlet{
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
                 User user = service.loginUser(username, password);
+                if(user==null) throw new Exception();
                 request.getSession().setAttribute("user", user);
-                request.getRequestDispatcher("/client/head.jsp").forward(request, response);
+                //request.getRequestDispatcher("book-display.html").forward(request, response);
+                response.sendRedirect("index.do?method=listBookWithCategory&pagenum=1&categoryID=1");
             } catch (Exception e) {
                 request.setAttribute("message", "登陆失败了！");
-                request.getRequestDispatcher("/message.jsp").forward(request, response);
+                request.getRequestDispatcher("Login failed.html").forward(request, response);
             }
         } else if (method.equals("register")) {
             try {
@@ -41,12 +43,12 @@ public class UserServlet extends HttpServlet{
                 e.printStackTrace();
                 request.setAttribute("message", "注册失败了！");
             }
-            request.getRequestDispatcher("/message.jsp").forward(request, response);
+            response.getWriter().println("<script>Fail to register!</script>");
         } else if (method.equals("Logout")) {
             //销毁session
             request.getSession().invalidate();
             //回到首页
-            request.getRequestDispatcher("/client/head.jsp").forward(request, response);
+            request.getRequestDispatcher("Sign in.html").forward(request, response);
         }
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response)

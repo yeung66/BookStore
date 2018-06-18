@@ -1,9 +1,6 @@
 package main.service;
 
-import main.domain.Book;
-import main.domain.Cart;
-import main.domain.Category;
-import main.domain.Page;
+import main.domain.*;
 
 import java.util.List;
 
@@ -22,4 +19,16 @@ public interface BussinessService {
     Page getBookPageData(String pagenum, String categoryID);
     //购买书籍
     void buyBook(Cart cart, Book book);
+    //下订单
+    void createOrder(Cart cart, User user);
+    //列出已发货或未发货的所有订单
+    List<Order> listOrder(String state);
+    //列出某个用户的所有订单
+    Order findOrder(String orderid);
+    //更改订单状态
+    void confirmOrder(String orderid);
+    //列出某个用户已发货或未发货的所有订单
+    List<Order> listOrder(String state, String userid);
+
+    public List<Order> clientListOrder(String userid);
 }

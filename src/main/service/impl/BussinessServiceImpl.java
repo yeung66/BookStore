@@ -77,10 +77,10 @@ public class BussinessServiceImpl implements BussinessService {
             throw new RuntimeException("购物车里为空");
         }
         Order order = new Order();
-        order.setId(WebUtils.makeID());
-        order.setOrdertime(new Date());
+        order.setOrderID(WebUtils.makeID());
+        order.setOrderTime(new Date());
         order.setPrice(cart.getPrice());
-        order.setState(false);
+        order.setState("待发货");
         order.setUser(user);
         for(Map.Entry<String, CartItem> me : cart.getMap().entrySet()){
             //
@@ -96,22 +96,28 @@ public class BussinessServiceImpl implements BussinessService {
     }
     //列出已发货或未发货的所有订单
     public List<Order> listOrder(String state) {
-        return orderDao.getAll(Boolean.parseBoolean(state));
+        return orderDao.getAll(state);
     }
     //查找订单
     public Order findOrder(String orderid) {
         return orderDao.find(orderid);
     }
 
-    //更改订单状态
-    public void confirmOrder(String orderid) {
-        Order order = orderDao.find(orderid);
-        order.setState(true);
+    //发货(管理端）
+    public void deliveryOrder(String orderID) {
+        Order order = orderDao.find(orderID);
+        order.setState("待收货");
+        orderDao.update(order);
+    }
+    //确认收货(客户端）
+    public void comfirmOrder(String orderID){
+        Order order = orderDao.find(orderID);
+        order.setState("已收货");
         orderDao.update(order);
     }
     //列出某个用户已发货或未发货的所有订单（管理端用）
     public List<Order> listOrder(String state, String userid) {
-        return orderDao.getAll(Boolean.parseBoolean(state), userid);
+        return orderDao.getAll(state, userid);
     }
     //列出某用户的所有订单（客户端用）
     public List<Order> clientListOrder(String userid) {

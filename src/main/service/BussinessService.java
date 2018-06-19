@@ -28,7 +28,7 @@ public interface BussinessService {
     //列出某个用户的所有订单
     Order findOrder(String orderid);
     //更改订单状态
-    void confirmOrder(String orderid);
+    void deliveryOrder(String orderid);
     //列出某个用户已发货或未发货的所有订单
     List<Order> listOrder(String state, String userid);
 

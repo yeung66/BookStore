@@ -5,10 +5,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Order {
-    private String id;
-    private Date ordertime;
+    private String orderID;
+    private Date orderTime;
     private Double price;
-    private Boolean state;
+    private String state;
     private User user;
     private Set<OrderItem> orderitems = new HashSet<OrderItem>();
 
@@ -20,20 +20,20 @@ public class Order {
         this.orderitems = orderitems;
     }
 
-    public String getId() {
-        return id;
+    public String getOrderID() {
+        return orderID;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
     }
 
-    public Date getOrdertime() {
-        return ordertime;
+    public Date getOrderTime() {
+        return orderTime;
     }
 
-    public void setOrdertime(Date ordertime) {
-        this.ordertime = ordertime;
+    public void setOrderTime(Date orderTime) {
+        this.orderTime = orderTime;
     }
 
     public double getPrice() {
@@ -44,11 +44,11 @@ public class Order {
         this.price = price;
     }
 
-    public boolean isState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(boolean state) {
+    public void setState(String state) {
         this.state = state;
     }
 

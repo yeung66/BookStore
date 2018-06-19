@@ -1,4 +1,4 @@
-package main.web.client;
+package main.web.manager;
 
 import main.domain.Order;
 import main.service.impl.BussinessServiceImpl;
@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-@WebServlet(name = "ClientOrderDetailServlet")
-public class ClientOrderDetailServlet extends HttpServlet {
+//管理端点击order进入详情页
+@WebServlet(name = "ManagerOrderDetailServlet")
+public class ManagerOrderDetailServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+        doGet(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

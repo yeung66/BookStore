@@ -17,7 +17,7 @@ public class BookDaoImpl implements BookDao {
         try {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "insert into book(bookID,bookName,price,categoryID,bookPicture) values(?,?,?,?,?)";
-            Object params[] = {book.getBookid(),book.getBookname(),book.getPrice(),book.getCategoryID(),book.getBookpicture()};
+            Object params[] = {book.getBookid(),book.getBookname(),book.getPrice(),book.getCategoryID(),"null"};
             runner.update(sql, params);
         } catch (SQLException e) {
             e.printStackTrace();

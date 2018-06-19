@@ -60,20 +60,20 @@
         </form>
         <div class="orders">
             <div class="order">
-                <a><img></a>
+                <a><img src="static/img/book_1.jpg"></a>
                 <div class="title">书名：</div>
-                <input type="text" class="text1">
+                <input type="text" class="text1" name="bookname">
                 <div class="title">类别：</div>
-                <select class="option">
+                <select class="option" name="categoryID">
                     <% for(Category c:(List<Category>)request.getAttribute("categories") ){%>
-                    <option value="<%=c.getName()%>"><%=c.getName()%></option>
+                    <option value="<%=c.getId()%>"><%=c.getName()%></option>
 
                     <% } %>
                 </select>
                 <div class="price">价格：</div>
-                <input type="text" class="text1">
+                <input type="text" class="text1" name="price">
                 <div class="button">
-                    <button>确认上架</button>
+                    <button id="addBook">确认上架</button>
                 </div>
             </div>
 
@@ -95,6 +95,28 @@
 
     }
     })
+
+    document.querySelector('#addBook').onclick=function () {
+        var http=new XMLHttpRequest()
+        http.open('POST','manageBook.do?method=add',true)
+        //http.setRequestHeader("Content-type","multipart/form-data")
+        http.onreadystatechange=function () {
+            if(http.status==200 && http.readyState==4){
+                alert('上架书本成功')
+                location.reload()
+            }
+        }
+        var formdata= new FormData()
+
+        var bookname=document.querySelector('input[name=bookname]').value
+        var price=document.querySelector('input[name=price]').value
+        var id = document.querySelector('select[name=categoryID]').value
+        formdata.append('bookname',bookname)
+        formdata.append('price',price)
+        //formdata.append('method','add')
+        formdata.append('categoryID',id)
+        http.send(formdata)
+    }
 </script>
 </body>
 </html>

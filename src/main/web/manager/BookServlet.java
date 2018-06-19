@@ -81,7 +81,7 @@ public class BookServlet extends HttpServlet {
             e.printStackTrace();
             request.setAttribute("message", "添加失败");
         }
-        request.getRequestDispatcher("/message.jsp").forward(request, response);
+        //request.getRequestDispatcher("/message.jsp").forward(request, response);
     }
     //删除书籍
     private void deleteBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

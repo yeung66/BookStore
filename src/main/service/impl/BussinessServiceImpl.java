@@ -66,11 +66,18 @@ public class BussinessServiceImpl implements BussinessService {
         cart.addBook2Cart(book);
     }
 
+<<<<<<< HEAD
     //删除购物车内
     public void deleteCartBook(Cart cart, Book book){
         cart.deleteBookFromCart(book);
     }
 
+=======
+    //删除书籍
+    public void deleteBook(Cart cart, Book book){
+        cart.deleteBookFromCart(book);
+    }
+>>>>>>> temp
     //下订单
     public void createOrder(Cart cart, User user){
         if(cart == null){

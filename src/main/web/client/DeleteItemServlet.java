@@ -32,10 +32,14 @@ public class DeleteItemServlet extends HttpServlet{
         String book_id = request.getParameter("book_id");
         Book book = service.findBook(book_id);
         //删除书籍
+<<<<<<< HEAD
 
         service.deleteCartBook(cart, book);
         response.sendRedirect("Cart.do");
 
+=======
+        service.deleteBook(cart, book);
+>>>>>>> temp
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

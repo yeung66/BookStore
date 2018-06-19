@@ -62,7 +62,7 @@ public class OrderDaoImpl implements OrderDao{
     public void update(Order order){
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "update order set state=? where orderID=?";
+            String sql = "update orders set state=? where orderID=?";
             Object params[] = {order.getState(), order.getOrderID()};
             runner.update(sql, params);
         } catch(Exception e){
@@ -75,10 +75,10 @@ public class OrderDaoImpl implements OrderDao{
     public List<Order> getAll(String state){
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select * from order where state=?";
+            String sql = "select * from orders where state=?";
             List<Order> list = runner.query(sql, new BeanListHandler<>(Order.class), state);
             for(Order order : list){
-                sql = "select user.* from order,users where order.orderID=? and order.userID=users.userID";
+                sql = "select users.* from orders,users where orders.orderID=? and orders.userID=users.userID";
                 User user = runner.query(sql, new BeanHandler<>(User.class),order.getOrderID());
                 order.setUser(user);
             }
@@ -93,7 +93,7 @@ public class OrderDaoImpl implements OrderDao{
     public List<Order> getAll(String state, String userid){
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select * from order where state=? and order.userID=?";
+            String sql = "select * from orders where state=? and orders.userID=?";
             Object params[] = {state, userid};
             List<Order> list = runner.query(sql, new BeanListHandler<>(Order.class), params);
             for(Order order : list){

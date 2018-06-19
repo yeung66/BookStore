@@ -11,7 +11,12 @@
 <nav>
 
     <div class="logo">
+        <% if(session.getAttribute("admin")==null){%>
         <a href="index.do?method=listBookWithCategory&pagenum=1&categoryID=1">网上书店</a>
+        <% }else {%>
+        <a href="manageBook.do?method=list">网上书店</a>
+        <% } %>
+
     </div>
     <div class="user">
         <ul>
@@ -24,7 +29,7 @@
             <li>员工：system</li>
             <li><a href="user.do?method=Logout" id='logout'>注销</a></li>
             <li><a href="manageBook.do?method=list">书籍管理</a></li>
-            <li><a href="orders.do">换货管理</a></li>
+            <li><a href="manageOrder.do?state=待发货">换货管理</a></li>
             <% } %>
         </ul>
     </div>
@@ -63,6 +68,23 @@
             }
         }
         http.send('book_id='+e.target.parentNode.parentNode.id)
+
+    }
+    })
+
+    var buttonsAdd=document.querySelectorAll('.deleteBook')
+    buttonsAdd.forEach((b)=>{
+        b.onclick=(e)=>{
+        var http = new XMLHttpRequest()
+        http.open('POST','manageBook.do',true)
+        http.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+        http.onreadystatechange=function () {
+            if(http.status==200 && http.readyState==4){
+                alert("下架成功！")
+                location.href='manageBook.do?method=list'
+            }
+        }
+        http.send('bookID='+e.target.parentNode.parentNode.id+'&method=delete')
 
     }
     })

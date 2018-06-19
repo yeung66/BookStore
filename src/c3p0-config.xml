@@ -4,7 +4,7 @@
 	
 	<default-config>
 		<property name="driverClass">com.mysql.jdbc.Driver</property>
-		<property name="jdbcUrl">jdbc:mysql://193.112.33.53:3306/cjl</property>
+		<property name="jdbcUrl">jdbc:mysql://193.112.33.53:3306/cjl?useUnicode=true&amp;characterEncoding=UTF-8</property>
 		<property name="user">user</property>
 		<property name="password">user</property>
 		

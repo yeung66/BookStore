@@ -12,7 +12,7 @@
 <body>
 <nav>
     <div class="logo">
-        <a href="#">网上书店</a>
+        <a href="index.do?method=listBookWithCategory&pagenum=1&categoryID=1">网上书店</a>
     </div>
     <div class="user">
         <ul>
@@ -44,15 +44,18 @@
         </div>
         <% for(Order o:(List<Order>)request.getAttribute("orders")){%>
         <div class="order">
-            <div class="time"><%=o.getOrdertime()%></div>
-            <div><%=o.isState()%></div>
+            <div class="time"><%=o.getOrderTime()%></div>
+            <div><%=o.getState()%></div>
             <div><%=o.getPrice()%></div>
-            <div><button><a href="orderDetail.do?<%=o.getId()%>">查看详情</a></button></div>
+            <div><button><a href="orderDetail.do?orderID=<%=o.getOrderID()%>">查看详情</a></button></div>
 
         </div>
 
         <%}%>
     </div>
 </section>
+<script>
+
+</script>
 </body>
 </html>

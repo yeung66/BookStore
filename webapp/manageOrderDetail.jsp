@@ -15,14 +15,14 @@
 <body>
 <nav>
     <div class="logo">
-        <a href="index.do?method=listBookWithCategory&pagenum=1&categoryID=1">网上书店</a>
+        <a href="manageBook.do?method=list">网上书店</a>
     </div>
     <div class="user">
         <ul>
-            <li>用户：${sessionScope.user.username} </li>
+            <li>员工：system </li>
             <li><a href="user.do?method=Logout" id='logout'>注销</a></li>
-            <li><a href="#">购物车</a></li>
-            <li><a href="orders.do">我的订单</a></li>
+            <li><a href="manageBook.do?method=list">书籍管理</a></li>
+            <li><a href="manageOrder.do?state=待发货">订单管理</a></li>
         </ul>
     </div>
 </nav>
@@ -55,7 +55,7 @@
                 </td>
                 <td class="row_name">
                     <div class="name">
-                        <a href="" target="_blank"><%=oi.getBook().getBookname()%></a>
+                        <a  target="_blank"><%=oi.getBook().getBookname()%></a>
                     </div>
                 </td>
                 <td class="row3">
@@ -90,14 +90,14 @@
         <%--<span style="color:#969696"></span>--%>
 
         <span>订单日期：${requestScope.order.orderTime}</span>
-            <span>订单状态：${requestScope.order.state}</span>
-        <span >总计（不含运费）：</span>
-        <span >￥${requestScope.order.price}</span>
-            <%if(!((Order) request.getAttribute("order")).getState().equals("已收货")){%>
-                <button class="Confirm" id="${requestScope.order.orderID}">确认收货</button>
-            <%}else{%>
-            <button disabled="true">已经收货</button>
-            <%}%>
+        <span>订单状态：${requestScope.order.state}</span>
+        <span >订单用户：${requestScope.order.user.username}</span>
+        <span >总计（不含运费）：￥${requestScope.order.price}</span>
+        <%if(((Order) request.getAttribute("order")).getState().equals("待发货")){%>
+        <button class="Confirm" id="${requestScope.order.orderID}">发货</button>
+        <%}else{%>
+        <button disabled="true">已发货</button>
+        <%}%>
     </div>
 </section>
 
@@ -105,11 +105,11 @@
     var btn =document.querySelector('.Confirm')
     btn.onclick=function (e) {
         var http=new XMLHttpRequest()
-        http.open('GET','confirm.do?orderID='+e.target.id,true)
+        http.open('GET','deliever.do?orderID='+e.target.id,true)
         http.onreadystatechange=function () {
             if(http.status==200&&http.readyState==4){
-                alert('收货成功！')
-                location.href='orders.do'
+                alert('发货成功！')
+                location.href='manageOrder.do?state=待发货'
             }
         }
         http.send()

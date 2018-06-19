@@ -18,10 +18,10 @@ public class ManagerListOrderServlet extends HttpServlet {
         String state = request.getParameter("state");
         List<Order> orders = service.listOrder(state);
         request.setAttribute("orders", orders);
-        request.getRequestDispatcher("/manager/listorder.jsp").forward(request, response);
+        request.getRequestDispatcher("manageOrder.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+        doPost(request, response);
     }
 }

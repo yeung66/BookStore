@@ -111,4 +111,37 @@
     <servlet-name>manageBook</servlet-name>
     <url-pattern>/manageBook.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>confireOrder</servlet-name>
+    <servlet-class>main.web.client.ConfirmOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>confireOrder</servlet-name>
+    <url-pattern>/confirm.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>manageOrder</servlet-name>
+    <servlet-class>main.web.manager.ManagerListOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>manageOrder</servlet-name>
+    <url-pattern>/manageOrder.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>manageOrderDetial</servlet-name>
+    <servlet-class>main.web.manager.ManagerOrderDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>manageOrderDetial</servlet-name>
+    <url-pattern>/manageOrderDetail.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>deliever</servlet-name>
+    <servlet-class>main.web.manager.DeliverOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deliever</servlet-name>
+    <url-pattern>/deliever.do</url-pattern>
+  </servlet-mapping>
 </web-app>

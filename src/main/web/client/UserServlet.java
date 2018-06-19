@@ -52,6 +52,7 @@ public class UserServlet extends HttpServlet{
         } else if (method.equals("Logout")) {
             //销毁session
             request.getSession().removeAttribute("cart");
+            request.getSession().removeAttribute("admin");
             request.getSession().invalidate();
             //回到首页
             request.getRequestDispatcher("Sign in.html").forward(request, response);

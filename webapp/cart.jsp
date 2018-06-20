@@ -112,7 +112,7 @@
         http.onreadystatechange=()=>{
             if(http.readyState==4&&http.status==200){
                 alert('结算成功')
-                window.location.href='orders.do?userid='+${sessionScope.user.userid}
+                window.location.href='orders.do?userid=${sessionScope.user.userid}'
             }
         }
         http.send()
